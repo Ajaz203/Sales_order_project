@@ -32,8 +32,7 @@ sap.ui.define([
 
                 // debugger;
                 if (!that.oDialog) {
-                    // that.oDialog = sap.ui.xmlfragment("chobanii.fragment.update", that);
-                    // that.getView().addDependent(that.oDialog);
+                    
                     this.loadFragment({
                         name: "chobanii.fragment.update"
                     }).then(function (odialog) {
@@ -78,7 +77,7 @@ sap.ui.define([
                 };
                 console.log("Payload:", oPayload);
             
-                var that = this; // Preserve 'this' reference for use inside the Ajax callbacks
+                var that = this; 
             
                 // Send the update request to the backend
                 $.ajax({
@@ -93,7 +92,7 @@ sap.ui.define([
                         MessageToast.show("Data updated successfully");
                         // window.location.reload();
                         that.onClose(); // Close the dialog or handle further actions
-                        this.getView().getModel("Model").refresh();
+                        that.getView().getModel("Model").refresh();
                     },
                     error: function (err) {
                         MessageToast.show("Error occurred while updating data");
@@ -102,23 +101,6 @@ sap.ui.define([
                 });
             },
              
-            
-            
-
-            // success: function (data) {
-            //     // Log the response data to the console
-            //     console.log("Response data:", data);
-
-            //     // Check if the response is a string, if so, parse it as JSON
-            //     if (typeof data === "string") {
-            //         data = JSON.parse(data);
-            //     }
-
-            //     // Update the form fields with the data received from the backend
-            //     oModel.setData(data);
-            //     MessageToast.show("Data updated successfully");
-            //     this.getView().getModel("ModelData").refresh();
-            // },
             onChangeLog: function () {
                 // Retrieve change log data from the server or database
                 $.ajax({
@@ -157,10 +139,7 @@ sap.ui.define([
             },
 
             onSendToSap: function (oEvent) {
-                // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                // this.oTable = this.getView().byId("idInprogressTable");
-
-                // var itemNo = oEvent.oSource.mAggregations.cells[0].mProperties.text;
+                
                 var invoiceNo = runidd;
                 console.log("mynew id ", invoiceNo);
 
@@ -249,8 +228,7 @@ sap.ui.define([
 
 
                         if (res.status == 200) {
-                            // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                            // oRouter.navTo("ProgressData" , {}, true);
+                           
                         }
                         if (res.status == 400) {
                             sap.m.MessageToast.show("Server Not Responding");
@@ -407,9 +385,6 @@ sap.ui.define([
                     oExport.destroy();
                 });
             },
-            // In the tab fragment's controller
-
-
-
+          
         });
     });

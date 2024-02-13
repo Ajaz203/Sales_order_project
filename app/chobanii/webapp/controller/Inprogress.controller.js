@@ -43,18 +43,6 @@ sap.ui.define([
             oBinding.filter([]);
         }
     },
-    
-      
-
-    //   onRowDelete: function(event) {
-    //     var selectedRowContext = event.getSource().getBindingContext("Model");
-    //     var selectedRowData = selectedRowContext.getObject();
-    //     var invoiceNumber = selectedRowData.invoiceNumber; // Assuming 'invoiceNumber' is the property that holds the invoice number
-    //     console.log("Selected row invoice number: " + invoiceNumber);
-    // },
-
- 
-
 onRowDelete: function(event) {
     var selectedRowContext = event.getSource().getBindingContext("Model");
     var selectedRowData = selectedRowContext.getObject();

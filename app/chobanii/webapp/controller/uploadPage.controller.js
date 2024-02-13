@@ -129,10 +129,7 @@ sap.ui.define([
                 reader.readAsArrayBuffer(file);
             },
 
-            // Assuming you have the 'xlsx' library imported
-            // Read the Excel file and upload the Excel data to the backend
-
-
+        
             onSubmit: function () {
                 var that = this;
                 var invoiceNumber = that.getView().byId("runid").getValue();
@@ -158,12 +155,9 @@ sap.ui.define([
                     sap.m.MessageToast.show("Please upload the Excel file");
                     return; // Exit the function, preventing further execution
                 }
-                // console.log('formDataToPass', formDataToPass);
-                // var fileFormData = new FormData();
+ 
                 const formDataToPass2 = JSON.stringify(formDataToPass)
-                // console.log(typeof(formDataToPass2))
-                // fileFormData.append("formData", JSON.stringify(formDataToPass))
-                // First, upload the file to the backend
+               
                 fetch("https://port4040-workspaces-ws-v479k.us10.trial.applicationstudio.cloud.sap/my/excelUpload", {
                     method: "POST",
                     headers: {

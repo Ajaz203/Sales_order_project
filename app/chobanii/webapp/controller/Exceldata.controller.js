@@ -28,12 +28,7 @@ sap.ui.define([
                
 
             },
-            // onSubmitPress:function()
-            // {
-            //     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            //     oRouter.navTo("Exceldata", {}, true);
-            //     console.log("data");
-            // },
+          
             onBackPress:function()
             {
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

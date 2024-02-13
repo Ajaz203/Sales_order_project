@@ -77,11 +77,7 @@ sap.ui.define([
                     console.error("Failed to login:", error);
                     // Optionally handle the error
                 });
-            
-            
-
-            // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            // oRouter.navTo("Exceldata", {}, true);
+                
             this.byId("user").setValue(""); 
             this.byId("password").setValue("");
         },
