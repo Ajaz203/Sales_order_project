@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+>
+    <Dialog
+        id="oDialogId"
+        title="Update Data"
+        contentWidth="600px"
+        titleAlignment="Center"
+        contentHeight="400px"
+    >
+        <smartForm:SmartForm
+            id="smartFormId"
+            editable="true"
+        >
+            <smartForm:Group>
+                <smartForm:GroupElement>
+                    <Label text="Invoice Number" />
+                    <Input
+                        value="{ModelData>Supplierinvoice}"
+                        editable="false"
+                        id="invoiceNum"
+                    />
+                </smartForm:GroupElement>
+                <smartForm:GroupElement>
+                    <Label text="Invoice Gross Amount" />
+                    <Input  id="invoiceAmount"  value="{ModelData>Invoicegrossamount}" />
+                </smartForm:GroupElement>
+                <smartForm:GroupElement>
+                    <Label text="Fiscal Year" />
+                    <Input  id="invoiceYear"  value="{ModelData>Fiscalyear}" />
+                </smartForm:GroupElement>
+                <smartForm:GroupElement>
+                    <Label text="Document Date" />
+                    <Input value="{ModelData>Documentdate}" />
+                </smartForm:GroupElement>
+            </smartForm:Group>
+        </smartForm:SmartForm>
+        <beginButton>
+            <Button
+                id="btnSave"
+                icon="sap-icon://edit"
+                text="Update"
+                press="onUpdateRecord"
+                type="Success"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Close"
+                press="onClose"
+                type="Reject"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

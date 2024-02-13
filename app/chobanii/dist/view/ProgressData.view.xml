@@ -1,0 +1,228 @@
+ <mvc:View
+	controllerName="chobanii.controller.ProgressData"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	>
+
+
+	<Page
+		id="page"
+		title="Excel Data Page"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		titleAlignment="Center"
+        showNavButton="true"
+		navButtonPress="onBackPress"
+	>
+		<content>
+		 	<Bar id="idBar">
+         		<contentRight>
+             		<Button
+                            id="changeLog"
+                            text="ChangeLog"
+                            press="onChangeLog"
+                            type="Emphasized"
+                        />
+						<!-- <Button icon="sap-icon://download" text="Download" press="onDataExport" tooltip="{i18n>download}" id="download"/> -->
+         		</contentRight>
+        	</Bar>
+			
+				<VBox class="sapUiSmallMargin" id="vbox1">
+					<Table 
+						id="idInprogressTable" 
+						items="{ModelData>/}"
+						 alternateRowColors="true" 
+						 visible="true" 
+						 class="sapUiLargeMarginBottom" 
+						 growing="true" 	
+						 growingThreshold="100" 
+						 growingScrollToLoad="true" 
+						 mode="MultiSelect"
+					>
+						<columns>
+							<Column id="column1" hAlign="Center">
+								<Label
+									text="Invoice Number"
+									design="Bold"
+									id="scacCode1"
+								/>
+							</Column>
+							<Column id="column4" hAlign="Center">
+								<Label
+									text="Fiscal Year"
+									design="Bold"
+									id="fiscelyear"
+								/>
+							</Column>
+							<Column id="column5" hAlign="Center">
+								<Label
+									text="Companycode"
+									design="Bold"
+									id="Companycode"
+								/>
+							</Column>
+							<Column id="column2" hAlign="Center">
+								<Label
+									text="Invoice  Date"
+									design="Bold"
+									id="bol1"
+								/>
+							</Column>
+							
+							
+							
+
+							<Column id="column6" hAlign="Center">
+								<Label
+									text="Postingdate"
+									design="Bold"
+									id="Postingdate"
+								/>
+							</Column>
+
+							<Column id="column7" hAlign="Center">
+								<Label
+									text="SupplierInvoiceIdByInvcgParty "
+									design="Bold"
+									id="Supplierinvoiceidbyinvcgparty"
+								/>
+							</Column>
+
+							<Column id="column8" hAlign="Center">
+								<Label
+									text="Invoicingparty "
+									design="Bold"
+									id="Invoicingparty"
+								/>
+							</Column>
+
+							<Column id="column9" hAlign="Center">
+								<Label
+									text="Documentcurrency "
+									design="Bold"
+									id="Documentcurrency"
+								/>
+							</Column>
+
+							<Column id="column10" hAlign="Center">
+								<Label
+									text=" Invoicegrossamount"
+									design="Bold"
+									id="Invoicegrossamount"
+								/>
+							</Column>
+
+							<Column id="column11" hAlign="Center">
+								<Label
+									text="Duecalculationbasedate "
+									design="Bold"
+									id="Duecalculationbasedate"
+								/>
+							</Column>
+
+							<Column id="column12" hAlign="Center">
+								<Label
+									text=" Businessplace"
+									design="Bold"
+									id="Businessplace"
+								/>
+							</Column>
+							
+
+							<Column id="column13" hAlign="Center">
+								<Label
+									text=" Taxamount"
+									design="Bold"
+									id="Taxamount"
+								/>
+							</Column>
+
+					<Column id="column14" hAlign="Center">
+								<Label
+									text=" Supplierinvoiceitem"
+									design="Bold"
+									id="Supplierinvoiceitem"
+								/>
+							</Column>
+
+							<Column id="column15" hAlign="Center">
+								<Label
+									text=" Purchaseorder"
+									design="Bold"
+									id="Purchaseorder"
+								/>
+							</Column>
+
+							<Column id="column16" hAlign="Center">
+								<Label
+									text=" Purchaseorderitem"
+									design="Bold"
+									id="Purchaseorderitem"
+								/>
+							</Column>
+
+							<Column id="column17" hAlign="Center">
+								<Label
+									text=" SupplierInvoiceItemAmount"
+									design="Bold"
+									id="SupplierInvoiceItemAmount"
+								/>
+							</Column>
+
+							
+							<Column id="column18" hAlign="Center">
+								<Label
+									text=" Taxcode"
+									design="Bold"
+									id="Taxcode"
+								/>
+							</Column>
+
+
+
+						</columns>
+						<items>
+							<ColumnListItem
+								press="onItemPress"
+								type="Navigation"
+								id="ColumnListItem"		
+							>
+								<cells>
+									<Text text="{ModelData>Supplierinvoice}" />
+                                    <Text text="{ModelData>Fiscalyear}" />
+									<Text text="{ModelData>Documentdate}" />
+                                    <Text text="{ModelData>Postingdate}" />
+                                    <Text text="{ModelData>Supplierinvoiceidbyinvcgparty}" />
+									<Text text="{ModelData>Invoicingparty}" />
+                                    <Text text="{ModelData>Documentcurrency}" />
+                                    <Text text="{ModelData>Invoicegrossamount}" />
+									<Text text="{ModelData>Duecalculationbasedate}" />
+                                    <Text text="{ModelData>Businessplace}" />
+									<Text text="{ModelData>Taxamount}" />
+                                    <Text text="{ModelData>Supplierinvoiceitem}" />
+                                    <Text text="{ModelData>Purchaseorder}" />
+									<Text text="{ModelData>Purchaseorderitem}" />
+                                    <Text text="{ModelData>SupplierInvoiceItemAmount}" />
+                                    <Text text="{ModelData>Taxcode}" />
+
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+
+				</VBox>
+		</content>
+		
+		
+	</Page>
+</mvc:View>
+
+
+
+
+
+
+
+
+												

@@ -1,0 +1,75 @@
+<!-- <mvc:View
+	controllerName="chobanii.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	>
+
+
+	<Page
+		id="page"
+		title="Upload Invoice"
+		titleAlignment="Center"
+	>
+	
+		
+		
+		
+	</Page>
+</mvc:View> -->
+
+
+<mvc:View controllerName="chobanii.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true"     
+	xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:u="sap.ui.unified"
+	> 
+
+
+    <Page id="page" title="Chobani Home Page" titleAlignment="Center" >
+    <ImageContent class="image" src="css/chobani.png" description="Image description" />
+      
+        <content>
+
+         <f:SimpleForm id="SimpleFormChange354"
+            editable="true"
+            layout="ResponsiveGridLayout"
+            class="sapUiLargeMarginTop"
+            labelSpanXL="4"
+            labelSpanL="3"
+            labelSpanM="3"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="4"
+            emptySpanL="4"
+            emptySpanM="4"
+            emptySpanS="0"
+            columnsXL="1"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false" >
+            <f:content>
+        
+                
+                <Label  text="UserName" design="Bold" class="sapUiTinyMarginTopBottom"/>  
+                <Input value="" width="235px" placeholder="Enter Email" id="user" />
+                <Label  text="Password" design="Bold" />  
+                <Input value="" type="Password" width="235px" placeholder="Enter Password" id="password" />
+                
+                    <!-- <Button class="sapUiLargeMarginBeginEnd" text="Login" press="onLoginPress" type="Emphasized"/> -->
+                                <Label  text="" design="Bold" />  
+
+               <VBox >
+                <Button icon="sap-icon://visits" id="btn" class="sapUiLargeMarginBeginEnd sapUiSmallMarginTop"  text="Login" type="Accept" press="onLoginPress1"/>
+               </VBox>
+            </f:content>
+        </f:SimpleForm>
+   
+       </content>
+    </Page>
+</mvc:View>

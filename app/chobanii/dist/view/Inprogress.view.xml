@@ -1,0 +1,60 @@
+<mvc:View
+	controllerName="chobanii.controller.Inprogress"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns:core="sap.ui.core"
+	xmlns:u="sap.uxap"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" 
+ >
+	 <Page
+		id="page"
+		title="In Progress Invoices"	
+		titleAlignment="Center"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="true"
+		navButtonPress=".onBack"
+	 >
+		<content >
+ 			<VBox >
+ 					<Table id="idInprogressTable" items="{Model>/InvoiceDetails}"  alternateRowColors="true" visible="true" class="sapUiLargeMarginBottom" growing="true" growingThreshold="100" growingScrollToLoad="true" >
+                              <!-- <infoToolbar> -->
+						        <!-- <OverflowToolbar> -->
+                                <!-- <ToolbarSpacer ></ToolbarSpacer> -->
+                                    <!-- <Button id="btnExport" icon="sap-icon://excel-attachment" press="onExportToExcel" /> -->
+							       
+						        <!-- </OverflowToolbar> -->
+					        <!-- </infoToolbar> -->
+                                    <columns>
+                                        <Column>
+                                            <Text text="Invoice Number" />
+                                        </Column>
+                                      
+                                        <Column>
+                                            <Text text="Invoice Date" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Invoice Amount" />
+                                        </Column>
+                                    </columns>
+
+                                    <items>
+                                        <ColumnListItem id="list" press="onItemPress"
+								type="Navigation">
+                                            <cells>
+                                                <Text text="{Model>invoiceNumber}" />
+                                                
+                                                <Text text="{Model>invoiceDate}" />
+                                                <Text text="{Model>invoiceAmount}" />
+                                               
+                                                   
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                	 </Table>
+			</VBox>
+         
+		</content>
+	</Page> 
+</mvc:View>

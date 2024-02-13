@@ -1,0 +1,200 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "chobanii",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.12.1",
+      "toolsId": "9c242369-4897-42a6-a05a-8a9be7f79d69"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/my/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.4",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "handleValidation": true,
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "chobanii.i18n.i18n"
+        }
+      },
+      
+      "Model": {
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+            "synchronizationMode": "None",
+            "operationMode": "Server",
+            "autoExpandSelect": true,
+            "earlyRequests": true,
+            "groupId": "$auto"
+        }
+    }
+    },
+    "resources": {
+      
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "chobanii.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "bypassed": {
+        "target": "notFound"
+     },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView1"
+          ]
+        },
+        {
+          "name": "uploadPage",
+          "pattern": "uploadPage",
+          "target": [
+              "TargetuploadPage"
+          ]
+      },
+      {
+        "name": "Exceldata",
+        "pattern": "Exceldata/{runid}",
+        "target": [
+            "TargetExceldata"
+        ]
+      },
+      {
+        "name": "Inprogress",
+        "pattern": "Inprogress",
+        "target": [
+            "TargetInprogress"
+        ]
+      },
+      {
+        "name": "ProgressData",
+        "pattern": "ProgressData/{runid}",
+        "target": [
+            "TargetProgressData"
+        ]
+      }
+      ],
+      "targets": {
+        "TargetView1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View1",
+          "viewName": "View1"
+        }
+      ,
+      "TargetuploadPage": {
+        "viewType": "XML",
+        "transition": "slide",
+        "clearControlAggregation": false,
+        "viewId": "uploadPage",
+        "viewName": "uploadPage"
+    } ,
+    "TargetExceldata": {
+      "viewType": "XML",
+      "transition": "slide",
+      "clearControlAggregation": false,
+      "viewId": "Exceldata",
+      "viewName": "Exceldata"
+   },
+   "TargetInprogress": {
+    "viewType": "XML",
+    "transition": "slide",
+    "clearControlAggregation": false,
+    "viewId": "Inprogress",
+    "viewName": "Inprogress"
+},
+"TargetProgressData": {
+  "viewType": "XML",
+  "transition": "slide",
+  "clearControlAggregation": false,
+  "viewId": "ProgressData",
+  "viewName": "ProgressData"
+},
+"notFound": {
+   "id": "notFound",
+   "name": "NotFound",
+   "transition": "show"
+}
+
+
+  }
+    },
+    "rootView": {
+      "viewName": "chobanii.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
+		

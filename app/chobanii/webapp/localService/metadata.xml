@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="MyService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="StudentDetails" EntityType="MyService.StudentDetails"/>
+                <EntitySet Name="details" EntityType="MyService.details"/>
+                <EntitySet Name="SomeView" EntityType="MyService.SomeView"/>
+                <EntitySet Name="readData" EntityType="MyService.readData"/>
+                <EntitySet Name="writedata" EntityType="MyService.writedata"/>
+                <ActionImport Name="rejectIdoc" Action="MyService.rejectIdoc"/>
+            </EntityContainer>
+            <EntityType Name="StudentDetails">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="details">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50"/>
+                <Property Name="degree" Type="Edm.String" MaxLength="30"/>
+                <Property Name="salary" Type="Edm.String" MaxLength="30"/>
+                <Property Name="newsalary" Type="Edm.String" MaxLength="30"/>
+                <Property Name="oldsalary" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="SomeView">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50"/>
+                <Property Name="degree" Type="Edm.String" MaxLength="30"/>
+                <Property Name="salary" Type="Edm.String" MaxLength="30"/>
+                <Property Name="newsalary" Type="Edm.String" MaxLength="30"/>
+                <Property Name="oldsalary" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="readData">
+                <Property Name="Id" Type="Edm.Int32"/>
+                <Property Name="name" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="writedata">
+                <Property Name="Id" Type="Edm.Int32"/>
+                <Property Name="name" Type="Edm.String"/>
+            </EntityType>
+            <ComplexType Name="return_MyService_rejectIdoc">
+                <Property Name="Status" Type="Edm.Int32"/>
+            </ComplexType>
+            <Action Name="rejectIdoc" IsBound="false">
+                <Parameter Name="data" Type="Edm.String"/>
+                <ReturnType Type="MyService.return_MyService_rejectIdoc"/>
+            </Action>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
