@@ -88,12 +88,12 @@ sap.ui.define([
                     data: JSON.stringify(oPayload),
                     success: function (data) {
                         console.log("Response data:", data);
-                        oModel.setData(data);
+                        // oModel.setData(data);
                         oModel.refresh(); // Refresh the model after setting the data
                         MessageToast.show("Data updated successfully");
-                        window.location.reload();
-                        // this.getView().getModel("Model").refresh();
+                        // window.location.reload();
                         that.onClose(); // Close the dialog or handle further actions
+                        this.getView().getModel("Model").refresh();
                     },
                     error: function (err) {
                         MessageToast.show("Error occurred while updating data");
