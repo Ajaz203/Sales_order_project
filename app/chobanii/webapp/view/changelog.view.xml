@@ -25,12 +25,8 @@
                 <Table
                     id="idChangeLogTable"
                     items="{Model>/invoiceLogs}"
-                    alternateRowColors="true"
                     visible="true"
                     class="sapUiLargeMarginBottom"
-                    growing="true"
-                    growingThreshold="100"
-                    growingScrollToLoad="true"
                 >
                     <columns>
                         <Column>
