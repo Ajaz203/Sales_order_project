@@ -22,6 +22,12 @@
 		<Toolbar id="idToolbar">
 		<Button id="history" text="In Progress Invoices" type="Emphasized" press="onInprogress" />	
 			<ToolbarSpacer id="historyspace"/>
+			<Button
+                        id="changeLog"
+                        text="ChangeLog"
+                        press="onChangeLog"
+                        type="Neutral"
+                    />
 				<Button id="logout" text="Log Out" type="Critical" press="onLogoutPress" icon="sap-icon://log"/>
 		</Toolbar>
 	</headerContent>

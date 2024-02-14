@@ -141,6 +141,13 @@
         "target": [
             "TargetProgressData"
         ]
+      },
+      {
+        "name": "changelog",
+        "pattern": "changelog",
+        "target": [
+            "Targetchangelog"
+        ]
       }
       ],
       "targets": {
@@ -179,6 +186,13 @@
   "clearControlAggregation": false,
   "viewId": "ProgressData",
   "viewName": "ProgressData"
+},
+"Targetchangelog": {
+  "viewType": "XML",
+  "transition": "slide",
+  "clearControlAggregation": false,
+  "viewId": "changelog",
+  "viewName": "changelog"
 },
 "notFound": {
    "id": "notFound",

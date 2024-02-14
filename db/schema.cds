@@ -39,3 +39,12 @@ entity excelData{
     SupplierInvoiceItemAmount:String(30);
     Taxcode:String(30);
 }
+ entity invoiceLogs {
+    key logId           : Integer64;
+    invoiceNo           : String;
+    lineItem           : String;
+    action         : String;
+    createdDate        : Timestamp  @cds.on.insert: $now;
+    createdBy        : String     
+    
+}

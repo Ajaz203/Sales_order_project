@@ -30,12 +30,12 @@
                         type="Accept"
 
                     />
-                    <!-- <Button
+                    <Button
                         id="changeLog"
                         text="ChangeLog"
                         press="onChangeLog"
                         type="Neutral"
-                    /> -->
+                    />
                     <Button
                         icon="sap-icon://download"
                         text=""

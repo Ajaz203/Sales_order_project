@@ -17,7 +17,11 @@ class MyService extends cds.ApplicationService {
         const {users} = cds.entities('chobani.db');
         const {invoice} = cds.entities('chobani.db');
         const {excelData} = cds.entities('chobani.db');
-        // console.log({excelData});
+        const {invoiceLogs} =cds.entities('chobani.db');
+        console.log({invoiceLogs});
+        console.log(excelData);
+       var i=0;
+       var logsId=i+1;
 
         this.on ('READ','readData', async (req) => {
             
@@ -85,6 +89,17 @@ class MyService extends cds.ApplicationService {
                     let inrecord = await DELETE.from(invoice).where({invoiceNumber : invoiceNumber});
                     let record = await DELETE.from(excelData).where({Supplierinvoice : invoiceNumber});
                     console.log({record});
+                    let idMax1 =  await SELECT.from(invoiceLogs,['MAX(logId) as count'])
+                    let logno2 = +idMax1[0]['count'] + 1
+                    try{
+                        await INSERT.into(invoiceLogs)
+                        .columns('logId','invoiceNo','lineItem', 'action', 'createdBy')
+                        .values(logno2,invoiceNumber, 'delete', 'success','ADMIN');
+                        console.log("demo");
+                    }
+                    catch(e){
+                        console.log(e);
+                    }
                     if(record.length){
                             return {response:JSON.stringify({ message: JSON.stringify(record), status:200})}
                         }
@@ -104,12 +119,26 @@ class MyService extends cds.ApplicationService {
                             .where({ invoiceNumber: invoiceNumber });
                             let record1 = await SELECT.from(excelData).where({Supplierinvoice : invoiceNumber});
                             console.log(record1);
+                            let idMax1 =  await SELECT.from(invoiceLogs,['MAX(logId) as count'])
+                            let logno2 = +idMax1[0]['count'] + 1
+                            try{
+                                await INSERT.into(invoiceLogs)
+                                .columns('logId','invoiceNo','lineItem', 'action', 'createdBy')
+                                .values(logno2,invoiceNumber, 'update', 'success','ADMIN');
+                                console.log("demo");
+                            }
+                            catch(e){
+                                console.log(e);
+                            }
                         
                         const updatedExcelData = await UPDATE(excelData)
                             .set({ Invoicegrossamount: newInvoiceGrossAmount, Fiscalyear: newFiscalYear })
                             .where({ Supplierinvoice: invoiceNumber });
-                
-                    
+                            console.log(JSON.stringify(element));
+                            console.log(invoiceNumber);
+                     
+                            
+                    console.log("demo");
                         if ( updatedExcelData && updatedInvoice) {
                             return {
                                 response: JSON.stringify({ message: "Invoice and Excel data updated successfully.", status: 200 })
@@ -128,67 +157,78 @@ class MyService extends cds.ApplicationService {
                 
                 
         
-        this.on('excelUpload',async (req, res) => {
-            var data = req.data.excelData;
-            var excelDatas  = JSON.parse(data);
-            var excelResponse = JSON.parse(data);
-            var invoiceDate = req.data.invoiceDate;
-            var invoiceNumber = req.data.invoiceNumber;
-            var totalAmount = req.data.totalAmount;
-            let invoiceData = await SELECT.from(invoice).where({invoiceNumber:invoiceNumber});
-            // console.log({invoiceData});
-            if(invoiceData.length){
-                console.log("Invoice already exist.")
-                return {response:JSON.stringify({ message: "Invoice already exist.", status:400})};
-            }
-            else{
-                // console.log(excelDatas)
-                let excelInvoiceChangeNum = false;
-                let excelAmmount = 0;
-                const fields = excelDatas.shift();
-                excelDatas.forEach(async element => {
-                    try{
-                       if(element.length){
-                        excelAmmount = excelAmmount + parseInt(element[8]);
-                        if( element[0]!= invoiceNumber){
-                            console.log(element[0],invoiceNumber)
-                            excelInvoiceChangeNum = true;
-                        } 
-                        }
-                    }
-                    catch(e){
-                        console.log(e);
-                    }
-                    
-                });
-                console.log(excelAmmount,totalAmount)
-                const diff =(totalAmount)-parseInt(excelAmmount)
-                console.log(typeof(diff),diff);
-                console.log(((diff <= 1) && (diff>=0)))
-                if(excelInvoiceChangeNum){
-                    return {response:JSON.stringify({ message: "SupplierInvoice do not match.", status:400,excelResponse})};
-                }
-                else if(!((diff <= 1) && (diff>=-1))){
-                    return {response:JSON.stringify({ message: "Invoicegrossamount do not match.", status:400,excelResponse})};
-                }
-                else{
-                    await INSERT.into(invoice).columns('invoiceNumber','invoiceDate','invoiceAmount').values(invoiceNumber,invoiceDate,totalAmount) ;
-
-                    excelDatas.forEach(async element => {
-                        
-                        try{
-                            await INSERT.into(excelData).columns(fields).values(element) ;
-                        }
-                        catch(e){
-                            console.log(e);
-                        }
-                        
-                    });
-                    return {response:JSON.stringify({ message: "Successfully Uploaded.", status:200,excelResponse})};
-                }
+                  this.on('excelUpload',async (req, res) => {
+                            var data = req.data.excelData;
+                            var excelDatas  = JSON.parse(data);
+                            var excelResponse = JSON.parse(data);
+                            var invoiceDate = req.data.invoiceDate;
+                            var invoiceNumber = req.data.invoiceNumber;
+                            var totalAmount = req.data.totalAmount;
+                            let invoiceData = await SELECT.from(invoice).where({invoiceNumber:invoiceNumber});
+                            // console.log({invoiceData});
+                            if(invoiceData.length){
+                                console.log("Invoice already exist.")
+                                return {response:JSON.stringify({ message: "Invoice already exist.", status:400})};
+                            }
+                            else{
+                                // console.log(excelDatas)
+                                let excelInvoiceChangeNum = false;
+                                let excelAmmount = 0;
+                                const fields = excelDatas.shift();
+                                excelDatas.forEach(async element => {
+                                    try{
+                                       if(element.length){
+                                        excelAmmount = excelAmmount + parseInt(element[8]);
+                                        if( element[0]!= invoiceNumber){
+                                            console.log(element[0],invoiceNumber)
+                                            excelInvoiceChangeNum = true;
+                                        } 
+                                        }
+                                    }
+                                    catch(e){
+                                        console.log(e);
+                                    }
+                                    
+                                });
+                                console.log(excelAmmount,totalAmount)
+                                const diff =(totalAmount)-parseInt(excelAmmount)
+                                console.log(typeof(diff),diff);
+                                console.log(((diff <= 1) && (diff>=0)))
+                                if(excelInvoiceChangeNum){
+                                    return {response:JSON.stringify({ message: "SupplierInvoice do not match.", status:400,excelResponse})};
+                                }
+                                else if(!((diff <= 1) && (diff>=-1))){
+                                    return {response:JSON.stringify({ message: "Invoicegrossamount do not match.", status:400,excelResponse})};
+                                }
+                                else{
+                                    await INSERT.into(invoice).columns('invoiceNumber','invoiceDate','invoiceAmount').values(invoiceNumber,invoiceDate,totalAmount) ;
+                                    let idMax1 =  await SELECT.from(invoiceLogs,['MAX(logId) as count'])
+                                    let logno2 = +idMax1[0]['count'] + 1
+                                    try{
+                                        await INSERT.into(invoiceLogs)
+                                        .columns('logId','invoiceNo','lineItem', 'action', 'createdBy')
+                                        .values(logno2,invoiceNumber, 'create', 'success','ADMIN');
+                                        console.log("demo");
+                                    }
+                                    catch(e){
+                                        console.log(e);
+                                    }
+                                    excelDatas.forEach(async element => {
+                                        
+                                        try{
+                                            await INSERT.into(excelData).columns(fields).values(element) ;
+                                        }
+                                        catch(e){
+                                            console.log(e);
+                                        }
+                                        
+                                    });
+                                    return {response:JSON.stringify({ message: "Successfully Uploaded.", status:200,excelResponse})};
+                                }
+                                
+                            }
+                        });
                 
-            }
-        });
 
         this.on('sendToSap', async(req)=>{
             console.log("req->data",req.data);

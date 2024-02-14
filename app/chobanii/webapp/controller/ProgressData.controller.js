@@ -24,6 +24,11 @@ sap.ui.define([
             },
            
             
+            onChangeLog:function()
+            {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("changelog", {}, true);
+            },
         
 
             onItemPress: function (oEvent) {
@@ -101,36 +106,36 @@ sap.ui.define([
                 });
             },
              
-            onChangeLog: function () {
-                // Retrieve change log data from the server or database
-                $.ajax({
-                    url: "https://your-api-endpoint/getChangeLog",
-                    type: "GET",
-                    success: function (changeLogData) {
-                        // Log the change log data to the console
-                        console.log("Change Log Data:", changeLogData);
+            // onChangeLog: function () {
+            //     // Retrieve change log data from the server or database
+            //     $.ajax({
+            //         url: "https://port4040-workspaces-ws-v479k.us10.trial.applicationstudio.cloud.sap/my/invoiceLogs",
+            //         type: "POST",
+            //         success: function (changeLogData) {
+            //             // Log the change log data to the console
+            //             console.log("Change Log Data:", changeLogData);
 
-                        // Now fetch the updated data
-                        $.ajax({
-                            url: "https://port4040-workspaces-ws-v479k.us10.trial.applicationstudio.cloud.sap/my/UpdateExcelData",
-                            type: "GET",
-                            success: function (updatedData) {
-                                // Log the updated data to the console
-                                console.log("Updated Data:", updatedData);
-                                // You can also update the UI with the updated data here
-                            },
-                            error: function (err) {
-                                console.error("Error retrieving updated data:", err);
-                                // Handle error, e.g., show error message to the user
-                            }
-                        });
-                    },
-                    error: function (err) {
-                        console.error("Error retrieving change log data:", err);
-                        // Handle error, e.g., show error message to the user
-                    }
-                });
-            },
+            //             // Now fetch the updated data
+            //             $.ajax({
+            //                 url: "https://port4040-workspaces-ws-v479k.us10.trial.applicationstudio.cloud.sap/my/UpdateExcelData",
+            //                 type: "GET",
+            //                 success: function (updatedData) {
+            //                     // Log the updated data to the console
+            //                     console.log("Updated Data:", updatedData);
+            //                     // You can also update the UI with the updated data here
+            //                 },
+            //                 error: function (err) {
+            //                     console.error("Error retrieving updated data:", err);
+            //                     // Handle error, e.g., show error message to the user
+            //                 }
+            //             });
+            //         },
+            //         error: function (err) {
+            //             console.error("Error retrieving change log data:", err);
+            //             // Handle error, e.g., show error message to the user
+            //         }
+            //     });
+            // },
             onObjectMatched: function (oEvent) {
                 // Handle the pattern matched event and any necessary data retrieval for the SmartForm
                 var runid = oEvent.getParameter("arguments").runid;

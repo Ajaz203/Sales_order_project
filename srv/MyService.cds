@@ -7,7 +7,8 @@ service MyService {
     entity details  as select from db.student;                  // Returns all fields of student entity.
     entity SomeView  as SELECT * from db.student where Id=112;  // Returns complete record where the condition is satisfied.
     entity excelData as SELECT * from db.excelData;
-    entity InvoiceDetails as select * from db.invoice;            // Returns all fields of invoice entity.      // Returns a single field.
+    entity InvoiceDetails as select * from db.invoice; 
+    entity invoiceLogs as select * from db.invoiceLogs;           // Returns all fields of invoice entity.      // Returns a single field.
     entity readData {
         Id:Integer;
         name:String;
@@ -25,6 +26,7 @@ service MyService {
         username:String;
         password:String;
     }
+ 
 
     action rejectIdoc(data : String) returns {Status : Integer};
     action userLogin(user : String, password:String) returns {response : String};

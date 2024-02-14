@@ -32,6 +32,11 @@ sap.ui.define([
                 sap.m.MessageToast.show("navigate Successfully");
                 
             },
+             onChangeLog: function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("changelog", {}, true);
+
+            },
 
             onBackPress: function () {
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
