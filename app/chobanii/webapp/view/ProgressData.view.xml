@@ -30,17 +30,16 @@
                         type="Accept"
 
                     />
-                    <Button
+                    <!-- <Button
                         id="changeLog"
                         text="ChangeLog"
                         press="onChangeLog"
                         type="Neutral"
-                    />
+                    /> -->
                     <Button
                         icon="sap-icon://download"
                         text=""
                         press="onDataExport"
-                        tooltip="{i18n>download}"
                         id="download"
                     />
                 </contentRight>

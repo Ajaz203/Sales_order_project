@@ -24,12 +24,22 @@
             <contentRight>
 				<SearchField width="25%" search="onSearch" placeholder="Invoice Number"/>
 				<Text text="" id="idSearchListToolbar" />
+                
 			</contentRight>
             
         </Bar>
             <VBox >
             
                 <Table id="idInprogressTable" items="{Model>/InvoiceDetails}"  alternateRowColors="true" visible="true"  class="sapUiLargeMarginBottom" growing="true" growingThreshold="100" growingScrollToLoad="true" >
+                   <!-- <headerToolbar>
+            <OverflowToolbar>
+            <Title
+          text="Your Table Title"
+          level="H2"/>
+                <Button text="Download excel" press="onDataExport" type="Default" icon="sap-icon://download"/>
+                
+            </OverflowToolbar>
+        </headerToolbar> -->
                     <columns>
                         <Column>
                             <Text text="Invoice Number" />
@@ -54,7 +64,7 @@
                                 <Text text="{Model>invoiceNumber}" />
                                 <Text text="{Model>invoiceDate}" />
                                 <Text text="{Model>invoiceAmount}" />
-                                <Button icon="sap-icon://delete" type="Emphasized" press="onRowDelete"/>
+                                <!-- <Button icon="sap-icon://delete" type="Emphasized" press="onRowDelete"/> -->
                             </cells>
                         </ColumnListItem>
                     </items>

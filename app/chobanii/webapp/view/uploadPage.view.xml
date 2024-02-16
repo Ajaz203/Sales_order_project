@@ -8,7 +8,7 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:l="sap.ui.layout"
 	xmlns:u="sap.ui.unified"
-		xmlns:t="sap.ui.table"
+	xmlns:t="sap.ui.table"
 
 >
 	<Page

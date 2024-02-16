@@ -254,142 +254,26 @@ sap.ui.define([
 
             },
 
-            onDataExport: function () {
-                var oExport = new Export({
-                    exportType: new ExportTypeCSV({ // required from "sap/ui/core/util/ExportTypeCSV"
-                        separatorChar: ",",
-                        charset: "utf-8"
-                    }),
-                    models: this.getView().getModel("Model"),
-                    rows: { path: "/excelData" },
-                    columns: [{
-                        name: "Invoice Number ",
-                        template: {
-                            content: "{Supplierinvoice}"
-
-                        }
-                    },
-                    {
-                        name: "Invoice  Date ",
-                        template: {
-                            content: "{Fiscalyear}"
-
-                        }
-                    },
-                    {
-                        name: "Amount ",
-                        template: {
-                            content: "{Companycode}"
-                        }
-                    },
-                    {
-                        name: "Fiscal Year ",
-                        template: {
-                            content: "{Documentdate}"
-                        }
-                    },
-                    {
-                        name: "Companycode",
-                        template: {
-                            content: "{Postingdate}"
-                        }
-                    },
-                    {
-                        name: "Postingdate ",
-                        template: {
-                            content: "{Postingdate}"
-                        }
-                    },
-                    {
-                        name: "SupplierInvoiceIdByInvcgParty ",
-                        template: {
-                            content: "{Supplierinvoiceidbyinvcgparty}"
-                        }
-                    },
-                    {
-                        name: "Invoicingparty",
-                        template: {
-                            content: "{Invoicingparty}"
-                        }
-                    },
-                    {
-                        name: "Documentcurrency",
-                        template: {
-                            content: "{Documentcurrency}"
-                        }
-                    },
-                    {
-                        name: "Invoicegrossamount",
-                        template: {
-                            content: "{Invoicegrossamount}"
-                        }
-                    }
-                        ,
-                    {
-                        name: "Duecalculationbasedate",
-                        template: {
-                            content: "{Duecalculationbasedate}"
-                        }
-                    }
-                        ,
-                        ,
-                    {
-                        name: "Businessplace ",
-                        template: {
-                            content: "{Businessplace}"
-                        }
-                    },
-                    {
-                        name: "Taxamount ",
-                        template: {
-                            content: { path: "Companycode" }
-                        }
-                    },
-                    {
-                        name: "Supplierinvoiceitem ",
-                        template: {
-                            content: { path: "Supplierinvoiceitem" }
-                        }
-                    },
-                    {
-                        name: "Taxamount ",
-                        template: {
-                            content: "{Taxamount}"
-                        }
-                    },
-                    {
-                        name: "Purchaseorder ",
-                        template: {
-                            content: "{Purchaseorder}"
-                        }
-                    },
-                    {
-                        name: "Purchaseorderitem ",
-                        template: {
-                            content: "{Purchaseorderitem}"
-                        }
-                    },
-                    {
-                        name: "SupplierInvoiceItemAmount ",
-                        template: {
-                            content: "{SupplierInvoiceItemAmount}"
-                        }
-                    },
-                    {
-                        name: " Taxcode",
-                        template: {
-                            content: "{Taxcode}"
-                        }
-                    }
-                        // ...
-                    ]
+            onDataExport: function() {
+                var table = this.getView().byId("idInprogressTable"); 
+                var selectedContexts = table.getSelectedContexts();
+                var selectedData = [];
+              
+                selectedContexts.forEach(function(context) {
+                  var selectedRowData = context.getObject();
+                  selectedData.push(selectedRowData);
                 });
-                oExport.saveFile().catch(function (oError) {
-                    MessageBox.error("Error when downloading data. ..." + oError);
-                }).then(function () {
-                    oExport.destroy();
-                });
-            },
-          
+                console.log(selectedData); 
+            
+                // Convert JSON to Excel workbook
+                var workbook = XLSX.utils.book_new();
+                var worksheet = XLSX.utils.json_to_sheet(selectedData);
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+                // Save the workbook as an Excel file
+                XLSX.writeFile(workbook, "data.xlsx");
+            
+              
+              } 
+               
         });
     });

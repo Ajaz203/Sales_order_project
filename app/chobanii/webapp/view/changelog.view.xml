@@ -5,6 +5,7 @@
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
 >
+
     <Page
         id="page"
         title="Log Details"
@@ -71,10 +72,7 @@
                        
                     </columns>
                     <items>
-                        <ColumnListItem
-                            press="onItemPress"
-                            type="Navigation"
-                        >
+                        <ColumnListItem >
                             <cells>
                                 <Text text="{Model>logId}" />
                                 <Text text="{Model>invoiceNo}" />

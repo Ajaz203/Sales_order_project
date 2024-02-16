@@ -1,13 +1,14 @@
 sap.ui.define([
-  "sap/ui/core/mvc/Controller",
-  "sap/m/MessageBox",
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox",
   "sap/m/MessageToast"
 ], function (Controller, MessageBox, MessageToast) {
-  "use strict";
-
+    "use strict";
+    
   return Controller.extend("chobanii.controller.Inprogress", {
       onInit: function () {
-        
+          
+    
 
          
       },
@@ -89,6 +90,5 @@ onRowDelete: function(event) {
 },
 
 
-
-  });
+});
 });
